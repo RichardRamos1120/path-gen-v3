@@ -1,0 +1,101 @@
+.login-signup{
+    display: flex;
+    flex-direction: row;
+}
+
+.login-signup-bg{
+    width:50%;
+    height: 100vh;
+    display: block;
+    object-fit: cover;
+}
+
+.login-signup-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    gap: 3rem;
+}
+
+.login-signup-form-label{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: left;
+}
+.login-signup-form-label span{
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 3rem;
+    color: #4D5959;
+}
+.login-signup-form-label input{
+    width: 60rem;
+    height: 6.5rem;
+    background: #EFF0F2;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 3rem;
+    padding: 1.5rem 2rem;
+}
+
+.login-signup-btn-action{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.login-signup-btn-action span{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    color: #4D5959;
+    cursor: pointer;
+
+}
+.login-signup-btn-action span em{
+    color: #007074;
+    font-style: normal;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1330px) {
+    .login-signup{
+        flex-direction: column;
+        gap: 6rem;
+    }
+    .login-signup-bg{
+        height: 300px;
+
+
+    }
+    .login-signup-bg,.login-signup-form{
+        width: 100%;
+
+    }
+}
+@media screen and (max-width: 768px) {
+    .login-signup-form{
+        padding: 6rem;
+    }
+    .login-signup-form-label{
+        width: 100%;
+    }
+    .login-signup-form-label input{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 440px){
+    .btn{
+        width: 100%;
+        font-size: 2rem;
+    }
+    .login-signup-form-logo{
+        width: 100%;
+    }
+}

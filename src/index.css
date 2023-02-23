@@ -1,13 +1,83 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: inherit;
+
+}
+html{
+  font-size: 62.5%;
+}
+body{
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+}
+/*RESET*/
+
+.btn{
+  background-color: #007074;
+  color: #fff;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem 4rem;
+  cursor: pointer;
+  width: 30rem;
+  height: 6rem;
+  font-weight: 500;
+  font-size: 2.6rem;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.login-btn-action{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.login-btn-action span{
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
+  color: #4D5959;
+  cursor: pointer;
+}
+a:visited{
+  color: #4D5959;
+}
+
+.firefoundry-logo{
+  width: 15rem;
+}
+
+ul,li{
+  list-style: none;
+}
+
+
+
+
+a:link {
+  text-decoration: none;
+  color: #000000;
+
+}
+
+a:visited {
+  text-decoration: none;
+  color: #000000;
+
+}
+
+a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:active {
+  text-decoration: none;
+  color: #000000;
 }

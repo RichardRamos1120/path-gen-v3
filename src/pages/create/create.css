@@ -1,0 +1,346 @@
+.create{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color:#FBFAFB;
+
+    height: 100vh;
+}
+
+.create header{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-between;
+    height: 10%;
+}
+.create header{
+    background-color: #fff;
+    box-shadow: 0 .2rem .5rem rgba(0,0,0,.1);
+    padding: 1rem 2rem;
+}
+.preview-icon{
+    width: 3rem;
+}
+.create-header-action{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.create-header-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    height: 4rem;
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+
+}
+.bg-dark{
+    background-color: #000;
+    color: #fff;
+}
+.bg-grey{
+    background-color: #E4E2E4;
+    padding: 1rem 1rem;
+    min-width: 4rem;
+}
+
+.create-main{
+
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    position: relative;
+
+}
+.create-main >*{
+
+
+}
+
+
+/*MAIN SIDEBAR*/
+.create-main-sidebar{
+    background-color: #fff;
+    box-shadow: 0 .1rem .1rem rgba(0,0,0,.1);
+    height: 90vh;
+    overflow-y: auto;
+
+}
+
+.create-main-sidebar-action{
+    padding: 1rem 2rem;
+    top: 0;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: 500;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(77, 89, 89, 0.24);
+    z-index: 999;
+}
+.create-add-btn{
+    font-size: 2.7rem;
+    font-weight: 500;
+}
+
+.create-main-sidebar-content-ul{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 1rem;
+    margin-top: 3rem;
+
+
+    width: 100%;
+}
+
+
+.create-main-sidebar-content-ul li{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    width: 100%;
+    position: relative;
+    padding: 2rem;
+    transition: all .1s linear;
+
+
+}
+.create-main-sidebar-content-ul li:hover{
+    background-color: #E4E2E4;
+}
+.select-react{
+    width: 10rem;
+    font-size: 1.8rem ;
+    font-weight: 500;
+}
+.choice-title{
+    word-break: break-all;
+    white-space: pre-wrap;
+    font-size: 2rem;
+    font-weight: 500;
+
+}
+.choice-title-em{
+    color: #007074;
+    font-weight: 600;
+}
+
+/*MAIN FORM CONTAINER*/
+.create-main-form{
+    display: flex;
+
+    justify-content: center;
+
+}
+.create-main-form-container{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0 .2rem .5rem rgba(0,0,0,.1);
+    padding: 3rem 6rem;
+    max-height: 60rem;
+    margin-top: 10rem;
+    overflow: auto;
+
+
+}
+.create-main-form-container label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.create-main-form-container > span{
+    min-width:4rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #EB6717;
+}
+.create-main-form-container label input{
+    width: 100% !important;
+    min-height: 3rem;
+    font-size: 3rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+
+}
+.create-form-description::placeholder {
+
+    color:#D9D9D9;
+}
+.create-form-description{
+    color: #7b7b7b;
+}
+
+::placeholder {
+
+    color: #3A0405;
+}
+
+.create-main-form-container-answers{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.create-main-form-container-answers button{
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 1.5rem;
+    width: 163px;
+    height: 49px;
+    background: rgba(235, 103, 23, 0.1);
+
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    border: 1px solid rgba(58, 4, 5, 0.2);
+    color: #EB6717;
+}
+.create-main-form-container-answers button:hover{
+    border: 3px solid #EB6717;
+}
+.create-main-form-container-answers button span{
+    width: 24px;
+    height: 24px;
+    background: #EB6717;
+    border: 1px solid rgba(134, 27, 9, 0.2);
+    border-radius: 2px;
+}
+.ok-btn{
+    background: #EB6717;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    width: 97px;
+    height: 49px;
+}
+
+/*MAIN CHOICE*/
+
+.create-main-choice{
+    box-shadow: 0 .2rem .5rem rgba(0,0,0,.1);
+}
+.create-main-choice-action{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    font-weight: 500;
+}
+.select-react-main-choice{
+    width: 100%;
+}
+
+.trash-icon{
+    display: none;
+    max-width:20px;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4D5959;
+
+}
+
+.create-main-sidebar-content-ul li:hover .trash-icon{
+    display: block;
+}
+
+.active-question{
+
+    background-color: #E4E2E4;
+}
+
+
+#after-publish{
+    /* White */
+    display: none;
+    background: #FFFFFF;
+    /* Card Shadow */
+
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+.after-publish h3{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+.after-publish label{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.after-publish input{
+    font-stretch: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    /* Black */
+    border: none;
+    outline: none;
+    color: #111111;
+}
+
+.after-publish button{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #111111;
+
+}
