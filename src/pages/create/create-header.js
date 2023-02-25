@@ -3,14 +3,17 @@ import EyeLogo from "./eye-2-svgrepo-com.svg";
 
 import {useLogout} from "../../hooks/useLogout";
 
-function CreateHeader() {
+function CreateHeader({setCurrentRoot,id,setIsCopyVisible}) {
 
     const handleClick = () =>{
 
-        let after = document.querySelector("#after-publish")
+        setCurrentRoot(`${window.location.origin}/question/${id}/q0`)
+        setIsCopyVisible("block")
 
-        console.log(after)
     }
+
+
+
     const {logout} = useLogout();
     return (
         <header>
@@ -19,7 +22,7 @@ function CreateHeader() {
 
             <div className="create-header-action">
                 <button className="create-header-btn bg-grey"><img src={EyeLogo} alt="preview icon" className="preview-icon"/></button>
-                <button className="create-header-btn bg-dark" >Publish</button>
+                <button className="create-header-btn bg-dark" onClick={handleClick}>Publish</button>
                 <button className="create-header-btn bg-dark" onClick={logout}>Logout</button>
             </div>
         </header>

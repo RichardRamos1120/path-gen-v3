@@ -8,7 +8,6 @@ import {useAuthContext} from "./useAuthContext";
 export const useCreateForm = (colName) =>{
     const {user} = useAuthContext();
 
-
     const createDoc = async() =>{
 
         try{
@@ -19,10 +18,42 @@ export const useCreateForm = (colName) =>{
                 created_at: Timestamp.now(),
                 updated_at: Timestamp.now(),
                 title: "",
+                plugins: [],
                 question_list: {
+
+                    // generatePDF:{
+                    //     nonClick:"yes",
+                    //     options: [
+                    //
+                    //         {
+                    //             choice_name:"GeneratePDF",
+                    //             answer_name:"GeneratePDF"
+                    //         },
+                    //     ],
+                    //     question_type: "PDF",
+                    //     page_num:"PDF",
+                    //     page_name:"PDF",
+                    //     question_bg: "",
+                    //     question_icon1: "",
+                    //     question_icon2: "",
+                    //     question_icon3: "",
+                    //
+                    //     question_description: "",
+                    //     question_description_placeholder: "",
+                    //
+                    //     question_title:"Generate PDF",
+                    //     question_title_placeholder: "",
+                    //
+                    // },
+
+
                     q0:{
                         options: [
-                            {next:"q1"}
+
+                            {
+                                choice_name:"edit",
+                                answer_name:"q0"
+                            },
                         ],
                         question_type: "welcome page",
                         page_num:"0",
@@ -39,6 +70,9 @@ export const useCreateForm = (colName) =>{
                         question_title_placeholder: "",
 
                     }
+
+
+
                 }
             })
             return res.id;

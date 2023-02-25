@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useAuthContext} from "../../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
+import {useUpdate} from "../../hooks/useUpdate";
+
 
 
 import "./create.css";
@@ -14,6 +17,8 @@ import CreateHeader from "./create-header";
 import CreateQuestion from "./create-question";
 import CreateSidebar from "./create-sidebar";
 import WelcomePage from "./welcome-page";
+import {doc, setDoc} from "firebase/firestore";
+import {db} from "../../firebase/config";
 
 
 
@@ -24,7 +29,7 @@ const optionsType = [
 ];
 
 const optionsPlugins = [
-    { value: 'circleGrap', label: 'circle graph' },
+    { value: 'progressbar', label: 'progress bar' },
     { value: 'plugin2', label: 'plugin2' },
     { value: 'plugin3', label: 'plugin3' },
 ];
@@ -39,8 +44,6 @@ function Create() {
     const {document} = useCollection();
 
     const {user} = useAuthContext()
-
-
 
 
     const [currentQ,setCurrentQ] = useState("q0")
@@ -67,6 +70,8 @@ function Create() {
     //we will pass all the current value to the database
     //after that we will set this value again back to null
 
+
+
     useEffect(()=>{
 
         if(document){
@@ -86,8 +91,12 @@ function Create() {
 
             //then if there is any changes on this element update the document
 
-        }
 
+            //query data to be put into the dashboard
+
+
+
+        }
 
     },[document,
         qs,
@@ -102,79 +111,139 @@ function Create() {
         currentType
     ])
 
+    const [currentRoot,setCurrentRoot] = useState("");
+    const [isCopyVisible,setIsCopyVisible] = useState("none")
+    const [isCopiedVisible,setIsCopiedVisible] = useState("none")
+    const navigate = useNavigate();
+
+    const [titleValue,setTitleValue] = useState("")
+    const handleCopy = () =>{
+        navigator.clipboard.writeText(currentRoot);
+        setIsCopiedVisible("flex")
+        setTimeout(()=>{
+            setIsCopiedVisible("none")
+            setIsCopyVisible("none")
+            navigate("/dashboard")
+
+        },1000)
+    }
+
+
+
+    const handleSubmitTitle = async (e) =>{
+        e.preventDefault()
+
+        await setDoc(doc(db, "questions",id),
+            {
+                title:titleValue
+            }
+
+            ,{ merge: true })
+
+
+    }
+
+
+
+
+
+
     return (
 
-        <div className="create">
-            <CreateHeader/>
-            <div id="after-publish">
-                <h3>
-                    Published successfully.
-                </h3>
-                <div>
-                    <label>
-                        <p>Direct URL</p>
-                        {document && <input type="text" value={`${window.location.origin}/question/${id}/q0`}/>}
-                    </label>
-                    <button>Copy</button>
-                </div>
-
-            </div>
-            <main className="create-main">
-                {/*sidebar*/}
-                <CreateSidebar
-                    document={document}
+        <>
+            {document && !document.title
+                ? <div className="change-title">
+                    <form onSubmit={handleSubmitTitle}>
+                        <label>
+                            <span>What is the title of this project?</span>
+                            <input
+                                value={titleValue}
+                                onChange={(e)=>setTitleValue(e.target.value)}
+                                type="text" placeholder="Project Title..."/>
+                        </label>
+                        <button>Create</button>
+                    </form>
+                </div> 
+                :<div className="create">
+                <CreateHeader
+                    setCurrentRoot={setCurrentRoot} id={id}
+                    currentRoot={currentRoot}
+                    setIsCopyVisible={setIsCopyVisible}
                 />
-
-                {/*main quesrtion*/}
-                <section className="create-main-form">
-                    {currentType === "short" ? <Short
+                <div id="after-publish" style={{display:isCopyVisible}}>
+                    <h3>
+                        Published successfully.
+                    </h3>
+                    <div className="after-publish-container">
+                        <label className="">
+                            <p>Direct URL</p>
+                            {document && <input className="publish-input" type="text" value={currentRoot} readOnly/>}
+                        </label>
+                        <button onClick={handleCopy}>Copy</button>
+                    </div>
+                    <p className="copied-to-clipboard" style={{display:isCopiedVisible}}>Copied to clipboard.</p>
+                </div>
+                <main className="create-main">
+                    {/*sidebar*/}
+                    <CreateSidebar
                         document={document}
-                        user={user}
-                        question_title={question_title}
+                    />
+
+                    {/*main quesrtion*/}
+                    <section className="create-main-form">
+                        {currentType === "short" ? <Short
+                                document={document}
+                                user={user}
+                                question_title={question_title}
+                                question_description={question_description}
+                                question_options={question_options}
+                                setQuestion_options={setQuestion_options}
+                            />
+                            : ""}
+                        {currentType === "welcome page" ? <WelcomePage
+                                user={user}
+                                document={document}
+                                question_icon1={question_icon1}
+                                question_icon2={question_icon2}
+                                question_icon3={question_icon3}
+                                setQuestion_icon1={setQuestion_icon1}
+                                setQuestion_icon2={setQuestion_icon2}
+                                setQuestion_icon3={setQuestion_icon3}
+                                setQuestion_bg={setQuestion_bg}
+                                question_bg={question_bg}
+                                question_title={question_title}
+                                setQuestion_title={setQuestion_title}
+                                setQuestion_description={setQuestion_description}
+                                question_description={question_description}
+
+                            />
+                            : ""}
+                    </section>
+
+                    {/*question selection*/}
+                    <CreateQuestion
+                        document={document}
+                        optionsType={optionsType}
+                        optionsPlugins={optionsPlugins}
+                        currentType={currentType}
+                        setCurrentType={setCurrentType}
+                        pageName={pageName}
+                        question_bg={question_bg}
                         question_description={question_description}
+                        setQuestion_description={setQuestion_description}
+                        question_description_placeholder={question_description_placeholder}
                         question_options={question_options}
                         setQuestion_options={setQuestion_options}
-                        />
-                        : ""}
-                    {currentType === "welcome page" ? <WelcomePage
-                        user={user}
-                        document={document}
-                        question_icon1={question_icon1}
-                        question_icon2={question_icon2}
-                        question_icon3={question_icon3}
-                        setQuestion_icon1={setQuestion_icon1}
-                        setQuestion_icon2={setQuestion_icon2}
-                        setQuestion_icon3={setQuestion_icon3}
-                        setQuestion_bg={setQuestion_bg}
-                        question_bg={question_bg}
-                        question_title={question_title}
-                        setQuestion_title={setQuestion_title}
-                        setQuestion_description={setQuestion_description}
-                        question_description={question_description}
 
-                        />
-                        : ""}
-                </section>
+                    />
+                    {/*<button >test change</button>*/}
+                </main>
 
-                {/*question selection*/}
-                <CreateQuestion
-                    document={document}
-                    optionsType={optionsType}
-                    optionsPlugins={optionsPlugins}
-                    currentType={currentType}
-                    setCurrentType={setCurrentType}
-                    pageName={pageName}
-                    question_bg={question_bg}
-                    question_description={question_description}
-                    setQuestion_description={setQuestion_description}
-                    question_description_placeholder={question_description_placeholder}
-                    question_options={question_options}
-                    setQuestion_options={setQuestion_options}
+            </div>
+            }
+        </>
 
-                />
-                {/*<button >test change</button>*/}
-            </main>
-        </div>
+
     );
 }
 

@@ -30,7 +30,7 @@ export const useUpdate  = (id,qs,docType) =>{
             update(docType)
         }
 
-    },[update,docType])
+    },[docType, update])
 
     return{update}
 

@@ -19,6 +19,7 @@
 .dashboard-main{
     display: flex;
     padding: 56px;
+    gap: 20px;
 }
 
 .dashboard-create{
@@ -31,4 +32,48 @@
     height: 160px;
     background-color: transparent;
     cursor: pointer;
+}
+.dashboard-question-item{
+    background: #FFFFFF;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    width: 240px;
+    height: 160px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+
+}
+
+.log-out-btn{
+
+    /* White */
+
+    background: #FFFFFF;
+    /* Tertiary Black */
+
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #111111;
+    cursor: pointer;
+
+}
+
+.dashboard-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
 }

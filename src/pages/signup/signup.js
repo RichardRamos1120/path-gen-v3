@@ -40,6 +40,7 @@ function Signup() {
                     placeholder="Enter your name" 
                     onChange={(e)=>setFullName(e.target.value)}
                     value={fullName}
+                    required
                     />
                 </label>
 
@@ -50,6 +51,7 @@ function Signup() {
                     placeholder="Enter your name Email here"
                     onChange={(e)=>setEmail(e.target.value)}
                     value={email}
+                    required
                     />
                 </label>
 
@@ -60,6 +62,7 @@ function Signup() {
                     placeholder="Enter your Password"
                     onChange={(e)=>setPassword(e.target.value)}
                     value={password}
+                    required
                     />
                 </label>
 

@@ -23,25 +23,32 @@ function CreateQuestion({optionsType,optionsPlugins,currentType,setCurrentType,d
 
     const [nextQuestion,setNextQuestion] = useState(null)
     let nextQuestionRef = null;
+    const [pluginsDefault,setPluginsDefault] = useState()
+
     useEffect(()=>{
 
         if(document){
+
             nextQuestionRef = document.question_list[qs].page_num;
             nextQuestionRef++;
             setNextQuestion(nextQuestionRef)
+
             return ()=>0;
 
         }
 
 
 
+
     },[document])
+
+
     const handleClick = async (e) =>{
 
         e.preventDefault();
         let nextQuestionRef = document.question_list[qs].page_num;
 
-        let tempArr = [...document.question_list[qs].options,{next:`q${nextQuestion}`  }]
+        let tempArr = [...document.question_list[qs].options, {choice_name:"edit", answer_name:`q0`}]
         const res = await setDoc(doc(db, "questions",id),
             {
                 question_list:{
@@ -53,10 +60,19 @@ function CreateQuestion({optionsType,optionsPlugins,currentType,setCurrentType,d
 
             ,{ merge: true })
 
-        console.log(res)
+
 
     }
 
+    const handleOptionChange = async (e) =>{
+
+        const res = await setDoc(doc(db, "questions",id),
+            {
+                plugins:e
+            }
+
+            ,{ merge: true })
+    }
 
 
     return (
@@ -84,7 +100,15 @@ function CreateQuestion({optionsType,optionsPlugins,currentType,setCurrentType,d
 
             <div className="create-main-choice-action">
                 <span>Add Plugins</span>
-                <Select isMulti options={optionsPlugins} className="select-react-main-choice"/>
+
+                <Select
+                    value={document && document.plugins}
+                    isMulti
+                    options={optionsPlugins}
+                    className="select-react-main-choice"
+                    onChange={(e)=>handleOptionChange(e)}
+
+                />
             </div>
 
         </section>

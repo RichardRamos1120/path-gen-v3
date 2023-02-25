@@ -63,18 +63,18 @@
     font-size: 24px;
     line-height: 29px;
     text-align: center;
-
+    position: relative;
     color: #3A0405;
 }
 
 .welcome-description{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    text-align: center !important;
 
-    color: #000000;
+    color: #000000 !important;
 }
 
 .welcome-button{
@@ -110,4 +110,99 @@
 .welcome-button{
     cursor: pointer;
     margin-top: 43px;
+}
+
+#question-short{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+.question-short-container{
+    max-width: 600px;
+    margin-top: 100px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+#question-short button{
+    min-width: 163px;
+    height: 49px;
+    background: rgba(235, 103, 23, 0.1);
+
+    border-radius: 10px;
+    display: flex;
+    justify-content: left;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #EB6717;
+    padding: 14px;
+    gap: 11px;
+    transition: all .1s linear;
+
+}
+#question-short button:hover span{
+    background: #EB6717;
+}
+
+#question-short button:hover{
+    border: 3px solid #EB6717;
+}
+#question-short button span{
+    width: 24px;
+    height: 24px;
+    transition: all .1s linear;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(134, 27, 9, 0.2);
+    border-radius: 2px;
+}
+
+#question-short .button-container{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    height: fit-content;
+
+}
+
+
+.short-background{
+    background-color:#FAF9F3;
+}
+
+.question-plugins{
+    min-width: 300px;
+    z-index: 999999;
+    height:100%;
+    gap: 50px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 10px ;
+
+}
+
+.individual-plugin-container{
+    width: 208px;
+    height: 208px;
+}
+.page-num{
+    color:#EB6717;
+    position: absolute;
+    left: -30%;
+    font-weight: 400;
+
+}
+.no-display{
+    display: none;
+    visibility: hidden;
 }

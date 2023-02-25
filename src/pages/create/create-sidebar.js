@@ -32,6 +32,10 @@ function CreateSidebar({exampleQuestionDB,document}) {
                         [`${currentQ}`]:{
                             options:[
 
+                                {
+                                    choice_name:"edit",
+                                    answer_name:"q0"
+                                }
                             ],
                             page_name:`q${nextQuestionItem}`,
                             page_num:`${nextQuestionItem}`,
@@ -135,15 +139,25 @@ function CreateSidebar({exampleQuestionDB,document}) {
                 <ul className="create-main-sidebar-content-ul">
 
                     {sideQ && sideQ.map(question=> (
-                        <Link to={`/create/${id}/${question.page_name}`}  key={`${question.page_name}`}>
-                            <li key={question.page_title} className={question.page_name === qs ? "active-question" : ""}>
-                                {!(question.page_name === "q0") && <span className="trash-icon" onClick={()=>handleDelete(question.page_name)}>X</span> }
-                                <p className="choice-title">
-                                    <span className="choice-title-em">{question.page_name}. </span>
-                                    {question.question_title}
-                                </p>
-                            </li>
-                        </Link>
+
+                        <React.Fragment key={`${question.page_name}`}>
+
+                            {question.nonClick === "yes" ? "" : (
+
+                                <Link to={`/create/${id}/${question.page_name}`} >
+                                    <p>{question.nonClick}</p>
+                                    <li key={question.page_title} className={question.page_name === qs ? "active-question" : ""}>
+                                        {!(question.page_name === "q0") && <span className="trash-icon" onClick={()=>handleDelete(question.page_name)}>X</span> }
+                                        <p className="choice-title">
+                                            <span className="choice-title-em">{question.page_name}. </span>
+                                            {question.question_title}
+                                        </p>
+                                    </li>
+                                </Link>
+                            )}
+
+                        </React.Fragment>
+
 
                     ) )}
 

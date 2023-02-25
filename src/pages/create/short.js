@@ -5,6 +5,7 @@ import "./welcome-page.css";
 import {useParams} from "react-router-dom";
 import {doc, setDoc} from "firebase/firestore";
 import {db} from "../../firebase/config";
+import ChoiceEditor from "./ChoiceEditor";
 
 function Short({
 
@@ -26,7 +27,7 @@ function Short({
 
     useEffect(()=>{
         //run once only if valid
-        console.log(question_options)
+        // console.log(question_options)
 
         if(question_title || question_description || question_options){
             setLocalTitle(question_title)
@@ -75,6 +76,13 @@ function Short({
 
     // ---------------------------
 
+    const [currentClick,setCurrentClick] = useState(NaN)
+
+    const handleClickChoice = (e,index,singleChoice) =>{
+        e.preventDefault()
+        setCurrentClick(index)
+        console.log(singleChoice)
+    }
 
     return (
         <form className="create-main-form-container">
@@ -96,13 +104,23 @@ function Short({
                 />
             </label>
             <div className="create-main-form-container-answers">
-                {document && document.question_list[qs].options.map((btnVal,index)=>
+                {document && document.question_list[qs].options.map((btnVal,index)=>(
 
                     // we can get the value of this later to change...
-                    <button onClick={(e)=>e.preventDefault()} key={index}><span>&nbsp;</span>{Object.keys(btnVal)}</button>
-                 )}
+                    <div key={index} className="choice-container">
+                        <button className="btn-choice" onClick={(e)=>handleClickChoice(e,index,btnVal)}>
+                            {btnVal.choice_name}
+                        </button>
+                        {currentClick === index && <ChoiceEditor index={index} btnVal={btnVal} setCurrentClick={setCurrentClick} document={document}/>}
+                    </div>
+
+
+
+
+
+                ) )}
             </div>
-            <button className="ok-btn">OK</button>
+            {/*<button className="ok-btn">OK</button>*/}
         </form>
     );
 }
