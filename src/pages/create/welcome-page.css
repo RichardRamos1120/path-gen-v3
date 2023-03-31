@@ -171,3 +171,33 @@
 
 
 }
+.long-input-label{
+    width: 100%;
+}
+.long-input-answer{
+    padding-bottom: 10px;
+    border: none !important;
+    outline: none !important;
+    border-bottom: 1px solid #EB6717 !important;
+    width: 100% !important;
+}
+.long-input-answer:active {
+    outline: none !important;
+}
+
+
+.long-input-answer::placeholder{
+    color: rgba(235, 103, 23, 0.2);
+}
+
+.info-default-btn{
+    margin-top: 43px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #EB6717 !important;
+    color: #FFFFFF !important;
+}
+.info-default-btn:hover{
+    border: none !important;
+}

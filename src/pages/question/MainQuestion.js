@@ -15,6 +15,7 @@ import 'react-circular-progressbar/dist/styles.css';
 function MainQuestion({document}) {
     const {qs,id} = useParams()
     const [toPdf,setToPdf] = useState("");
+    const [localInput,setLocalInput] = useState("");
 
     const generatePdf = () =>{
         // issue not generating the description to pdf
@@ -25,6 +26,7 @@ function MainQuestion({document}) {
 
     }
     const handleToPdf = (choice,title,description) =>{
+        setLocalInput("")
         let question = `Question: ${title}`
         let userChoice = `Answer: ${choice.choice_name}`;
         let descript  = `Description: ${description}`
@@ -134,7 +136,7 @@ function MainQuestion({document}) {
                                 <div id="question-short"  className={document.question_list[qs].question_type === "short"
                                     ? "short-background" : ""}>
                                     <div className="question-short-container">
-                                        <h3 className="welcome-title"><span className="page-num">q{document.question_list[qs].page_num} →</span> {document.question_list[qs].question_title}</h3>
+                                        <h3 className="welcome-title">{document.question_list[qs].question_title}</h3>
                                         <p className="welcome-description">{document.question_list[qs].question_description}</p>
 
                                         <div className="button-container">
@@ -157,7 +159,39 @@ function MainQuestion({document}) {
                             }
 
 
-                            {/*multi type*/}
+                            {/*info type*/}
+
+                            {document.question_list[qs].question_type === "info" &&
+                                <div id="question-short"  className={document.question_list[qs].question_type === "short"
+                                    ? "short-background" : ""}>
+                                    <div className="question-short-container">
+                                        <h3 className="welcome-title">{document.question_list[qs].question_title}</h3>
+                                        <p className="welcome-description">{document.question_list[qs].question_description}</p>
+                                        <label className="long-input-label">
+                                            <span>&nbsp;</span>
+                                            <input type="text"
+                                                   placeholder="Type your answer here ..." className="long-input-answer"
+                                                   value={localInput}
+                                                   onChange={(e)=>setLocalInput(e.target.value)}
+                                            />
+                                        </label>
+                                        <div className="button-container">
+                                            {document.question_list[qs].options.map((choice,index)=>(
+                                                <React.Fragment key={index}>
+                                                    {choice.choice_name.toLowerCase() === "generate pdf"
+                                                        ? <button onClick={generatePdf} className="welcome-button info-default-btn">{choice.choice_name}</button>
+                                                        : <Link to={`/question/${id}/${choice.answer_name}`}><button className="welcome-button" onClick={()=>handleToPdf(choice,
+                                                            document.question_list[qs].question_title,document.question_list[qs].question_description)}><span>&nbsp;</span>{choice.choice_name}</button>
+                                                        </Link>
+                                                    }
+                                                </React.Fragment>
+                                            ))}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            }
 
                         </div>
                     </section>

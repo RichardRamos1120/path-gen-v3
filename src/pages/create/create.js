@@ -13,9 +13,11 @@ import {useCollection} from "../../hooks/useCollection";
 
 //components
 import Short from "./short";
+import Info from "./Info";
 import CreateHeader from "./create-header";
 import CreateQuestion from "./create-question";
 import CreateSidebar from "./create-sidebar";
+import Multi from "./Multi";
 import WelcomePage from "./welcome-page";
 import {doc, setDoc} from "firebase/firestore";
 import {db} from "../../firebase/config";
@@ -25,13 +27,12 @@ import {db} from "../../firebase/config";
 const optionsType = [
     {value: 'welcome page', label: 'welcome page'},
     { value: 'short', label: 'short' },
-
+    { value: 'info', label: 'info' },
+    { value: 'multi', label: 'multi' },
 ];
 
 const optionsPlugins = [
     { value: 'progressbar', label: 'progress bar' },
-    { value: 'plugin2', label: 'plugin2' },
-    { value: 'plugin3', label: 'plugin3' },
 ];
 
 
@@ -145,9 +146,6 @@ function Create() {
 
 
 
-
-
-
     return (
 
         <>
@@ -200,7 +198,34 @@ function Create() {
                                 setQuestion_options={setQuestion_options}
                             />
                             : ""}
+                        {currentType === "info" ? <Info
+                                document={document}
+                                user={user}
+                                question_title={question_title}
+                                question_description={question_description}
+                                question_options={question_options}
+                                setQuestion_options={setQuestion_options}
+                            />
+                            : ""}
                         {currentType === "welcome page" ? <WelcomePage
+                                user={user}
+                                document={document}
+                                question_icon1={question_icon1}
+                                question_icon2={question_icon2}
+                                question_icon3={question_icon3}
+                                setQuestion_icon1={setQuestion_icon1}
+                                setQuestion_icon2={setQuestion_icon2}
+                                setQuestion_icon3={setQuestion_icon3}
+                                setQuestion_bg={setQuestion_bg}
+                                question_bg={question_bg}
+                                question_title={question_title}
+                                setQuestion_title={setQuestion_title}
+                                setQuestion_description={setQuestion_description}
+                                question_description={question_description}
+
+                            />
+                            : ""}
+                        {currentType === "multi" ? <Multi
                                 user={user}
                                 document={document}
                                 question_icon1={question_icon1}
